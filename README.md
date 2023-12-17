@@ -7,7 +7,7 @@ This repo is forked from [DIaM](https://github.com/sinahmr/DIaM). We used this a
 
 ## Overview
 ### Framework
-![framework](presentation/framework.png)
+![framework](./presentation/framework.png)
 
 > **Abstract:** This paper explores the capability of ViT-based models under the generalized few-shot semantic segmentation (GFSS) framework. We conducte experiments with various combinations of backbone models, including ResNets and pretrained Vision Transformer (ViT)-based models, along with decoders featuring a linear classifier, UPerNet, and Mask Transformer. The structure made of DINOv2 and linear classifier takes the lead on popular few-shot segmentation bench mark COCO-$20^i$, substantially outperforming the best of ResNet structure by $116\%$ in one-shot scenario. We demonstrate the great potential of large pretrained ViT-based model on GFSS task, and expect further improvement on testing benchmarks.
 
