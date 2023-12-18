@@ -1,0 +1,93 @@
+DATA:
+  data_name: pascal
+  split: 0
+  train_list: lists/pascal/train.txt
+  data_root: ./data/pascal
+  val_list: lists/pascal/val.txt
+  num_classes_tr: 16  # Counting background for training
+  num_classes_val: 5
+  use_split_coco: False
+  workers: 1
+  image_size: 473
+  padding_label: 255
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+  scale_min: 0.5
+  scale_max: 2.0
+  rot_min: -10
+  rot_max: 10
+  augmentations: ['hor_flip', 'vert_flip', 'resize']
+  pin_memory: TrueA
+
+TRAIN:
+  debug: False
+  ckpt_path: checkpoints/
+  batch_size: 8
+  epochs: 100
+  log_freq : 50
+  save_models: True
+  lr: 0.0025
+  cls_lr: 0.1
+  scale_lr: 2.0
+  mixup: False
+  lr_stepsize: 30
+  momentum: 0.9
+  gamma: 0.1
+  nesterov: True
+  weight_decay: 0.0001
+  main_optim: SGD
+  scheduler: cosine
+  milestones: [40, 70]
+
+MODEL:
+  arch: resnet #[Dino2, Dino, Diet, ViT, resnet, pspnet]
+  layers: 50 #pspnet does not support <= 34 TODO
+  pretrained: True  # Means the backbone has been pre-trained
+  bins: [1, 2, 3, 6]
+  dropout: 0.1
+  m_scale: False
+  bottleneck_dim: 512
+  feature_res: [60, 60]
+
+
+EVALUATION:
+  episodic_val: False
+  epi_frq: 1
+  random_shot: False
+  norm_feat: True
+  batch_size_val: 64          # Trade-off between speed and memory usage, no effect on the results
+  manual_seed: 42
+  ckpt_used: best
+  test_num: -1
+  FB_param_noise: 0
+  smoothing: True
+  n_runs: 5
+  shot: 1
+  support_only_one_novel: True  # It might help the model unfairly if a single support image has information about multiple novel classes, so set to True
+  use_training_images_for_supports: False
+  generate_new_support_set_for_each_task: True
+  shuffle_test_data: True
+
+
+Segmenthead:
+  seghead: "UPerNet"  #["None", "UPerNet"] PSPNet no UPerNet
+  train_seg: False
+
+
+CLASSIFIER:
+  weights: [100, 1, 1, 100]
+  adapt_iter: 100
+  cls_lr: 0.00125
+  pi_estimation_strategy: self  # ['uniform', 'self', 'imglvl', 'upperbound']
+  pi_update_at: [10]
+  fine_tune_base_classifier: True
+  clsfer: Linear                #['Linear', 'DIaM']
+
+EXPERIMENT:
+  exp_name: pretrain
+
+DISTRIBUTED:
+  gpus: [0]
+
+
+
