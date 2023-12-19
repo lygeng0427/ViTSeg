@@ -3,7 +3,7 @@ CSCI-GA 2271: Computer Vision - Final Project (Tutored by Prof. Rob Fergus)
 
 Group Members: Liyuan Geng, Jinhong Xia, Yuanhe Guo
 
-This repo is forked from [DIaM](https://github.com/sinahmr/DIaM). We used this as a starting point to implement our approach.
+This repo is forked from [DIaM](https://github.com/sinahmr/DIaM). We used this as a starting point to implement our approach. Please click here to view the [paper](https://drive.google.com/file/d/1HgwTRpUS_tiKZ5PI4BK1V280OaCQ77u7/view?usp=drive_link)
 
 ## Overview
 ### Framework
